@@ -1,0 +1,29 @@
+# Dependencies
+/node_modules
+
+# Build Outputs
+/dist
+/build
+
+# Generated Files
+/routeTree.gen.ts
+/src/routeTree.gen.ts
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+
+# IDE and Editor Directories
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+._*
+
+# Test-related
+/coverage
