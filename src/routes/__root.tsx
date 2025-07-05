@@ -8,6 +8,8 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "@/styles/app.css?url";
+import { getThemeServerFn } from "@/lib/theme";
+import { ThemeProvider, useTheme } from "@/components/theme-provider";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -19,19 +21,24 @@ export const Route = createRootRoute({
     links: [{ rel: "stylesheet", href: appCss }],
   }),
   component: RootComponent,
+  loader: () => getThemeServerFn(),
 });
 
 function RootComponent() {
+  const data = Route.useLoaderData();
   return (
-    <RootDocument>
-      <Outlet />
-    </RootDocument>
+    <ThemeProvider theme={data}>
+      <RootDocument>
+        <Outlet />
+      </RootDocument>
+    </ThemeProvider>
   );
 }
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
+  const { theme } = useTheme();
   return (
-    <html>
+    <html className={theme} suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>

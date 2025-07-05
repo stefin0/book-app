@@ -2,6 +2,7 @@ import * as fs from "node:fs";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const filePath = "count.txt";
 
@@ -34,15 +35,18 @@ function Home() {
   const state = Route.useLoaderData();
 
   return (
-    <Button
-      type="button"
-      onClick={() => {
-        updateCount({ data: 1 }).then(() => {
-          router.invalidate();
-        });
-      }}
-    >
-      Add 1 to {state}?
-    </Button>
+    <div className="flex h-screen items-center justify-center gap-2">
+      <Button
+        type="button"
+        onClick={() => {
+          updateCount({ data: 1 }).then(() => {
+            router.invalidate();
+          });
+        }}
+      >
+        Add 1 to {state}?
+      </Button>
+      <ThemeToggle />
+    </div>
   );
 }
